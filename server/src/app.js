@@ -3,9 +3,13 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
+import passport from "passport";
 import { env } from "./config/env.js";
+import "./config/passport.js";
 
 import { errorMiddleware } from "./middleware/error.middleware.js";
+
+import authRoutes from "./modules/auth/auth.routes.js";
 
 const app = express();
 
@@ -35,6 +39,9 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 
+app.use(passport.initialize());
+
+app.use("/api/auth", authRoutes);
 app.get("/health", (req, res) => {
   res.status(200).json({
     success: true,
