@@ -2,20 +2,36 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+const requiredEnvVariables = [
+  "PORT",
+  "MONGO_URI",
+  "JWT_SECRET",
+  "GOOGLE_CLIENT_ID",
+  "GOOGLE_CLIENT_SECRET",
+  "GOOGLE_CALLBACK_URL",
+  "FRONTEND_URL",
+];
+
+requiredEnvVariables.forEach((key) => {
+  if (!process.env[key]?.trim()) {
+    throw new Error(`Missing required environment variable: ${key}`);
+  }
+});
+
 export const env = {
   port: process.env.PORT,
-  nodeEnv: process.env.NODE_ENV,
+
   mongoUri: process.env.MONGO_URI,
+
   jwtSecret: process.env.JWT_SECRET,
 
-  frontendUrl: process.env.FRONTEND_URL,
-
   googleClientId: process.env.GOOGLE_CLIENT_ID,
+
   googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
+
   googleCallbackUrl: process.env.GOOGLE_CALLBACK_URL,
 
-  geminiApiKey: process.env.GEMINI_API_KEY,
+  nodeEnv: process.env.NODE_ENV || "development",
 
-  redisHost: process.env.REDIS_HOST,
-  redisPort: process.env.REDIS_PORT,
+  frontendUrl : process.env.FRONTEND_URL
 };
