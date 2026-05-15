@@ -24,7 +24,7 @@ export const googleAuthSuccess = asyncHandler(async (req, res) => {
       data: {
         accessToken: authData.accessToken,
 
-        user: authData.user,
+        user: authData.updatedUser,
       },
     }),
   );
