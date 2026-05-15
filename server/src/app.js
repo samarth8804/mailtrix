@@ -10,6 +10,7 @@ import "./config/passport.js";
 import { errorMiddleware } from "./middleware/error.middleware.js";
 
 import authRoutes from "./modules/auth/auth.routes.js";
+import userRoutes from "./modules/users/user.routes.js";
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.use(cookieParser());
 app.use(passport.initialize());
 
 app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
 app.get("/health", (req, res) => {
   res.status(200).json({
     success: true,
