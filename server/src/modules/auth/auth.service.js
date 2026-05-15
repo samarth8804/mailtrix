@@ -53,12 +53,14 @@ export const loginUser = async (user) => {
     refreshToken,
   });
 
+  const updatedUser = await User.findById(user._id).select("-refreshToken");
+
   return {
     accessToken,
 
     refreshToken,
 
-    user,
+    updatedUser,
 
     refreshTokenCookieOptions,
   };
