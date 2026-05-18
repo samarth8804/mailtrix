@@ -11,6 +11,7 @@ import { errorMiddleware } from "./middleware/error.middleware.js";
 
 import authRoutes from "./modules/auth/auth.routes.js";
 import userRoutes from "./modules/users/user.routes.js";
+import gmailRoutes from "./modules/gmail/gmail.routes.js";
 
 const app = express();
 
@@ -44,6 +45,7 @@ app.use(passport.initialize());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/gmail", gmailRoutes);
 app.get("/health", (req, res) => {
   res.status(200).json({
     success: true,
