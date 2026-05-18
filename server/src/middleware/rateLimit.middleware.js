@@ -11,7 +11,22 @@ export const authRateLimiter = rateLimit({
 
   message: {
     success: false,
-    message:
-      "Too many requests, please try again later",
+    message: "Too many requests, please try again later",
+  },
+});
+
+export const gmailOAuthRateLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+
+  max: 10,
+
+  standardHeaders: true,
+
+  legacyHeaders: false,
+
+  message: {
+    success: false,
+
+    message: "Too many Gmail OAuth requests",
   },
 });
