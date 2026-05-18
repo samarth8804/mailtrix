@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import { google } from "googleapis";
 
 dotenv.config();
 
@@ -10,6 +11,7 @@ const requiredEnvVariables = [
   "GOOGLE_CLIENT_SECRET",
   "GOOGLE_CALLBACK_URL",
   "FRONTEND_URL",
+  "GOOGLE_GMAIL_CALLBACK_URL",
 ];
 
 requiredEnvVariables.forEach((key) => {
@@ -31,7 +33,9 @@ export const env = {
 
   googleCallbackUrl: process.env.GOOGLE_CALLBACK_URL,
 
+  googleGmailCallbackUrl: process.env.GOOGLE_GMAIL_CALLBACK_URL,
+
   nodeEnv: process.env.NODE_ENV || "development",
 
-  frontendUrl : process.env.FRONTEND_URL
+  frontendUrl: process.env.FRONTEND_URL,
 };
