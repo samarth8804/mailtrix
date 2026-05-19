@@ -11,7 +11,14 @@ import {
 export const gmailConnect = asyncHandler(async (req, res) => {
   const authUrl = generateGmailAuthUrl(req.user._id);
 
-  return res.redirect(authUrl);
+  // return res.redirect(authUrl);
+  return res.status(200).json(
+    apiResponse({
+      data: {
+        authUrl,
+      },
+    }),
+  );
 });
 
 export const gmailCallback = asyncHandler(async (req, res) => {
@@ -43,6 +50,7 @@ export const disconnectGmail = asyncHandler(async (req, res) => {
 export const gmailStatus = asyncHandler(async (req, res) => {
   return res.status(200).json(
     apiResponse({
+      message: "Gmail Connected",
       data: {
         gmailConnected: req.user.gmailConnected,
       },
